@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Message</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet"> <!-- Added Dancing Script -->
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-image: url('https://i.imgur.com/h3D1KQM.jpeg'); /* Background image URL */
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            color: white;
+            text-align: center;
+            position: relative; /* Ensure positioning context for the butterfly */
+        }
+        .message {
+            font-size: 2em;
+            font-weight: bold;
+            cursor: pointer;
+            animation: pulse 1s infinite;
+            margin-bottom: 20px;
+            font-family: 'Dancing Script', cursive; /* Updated font */
+        }
+        .calligraphic {
+            font-family: 'Arial', sans-serif; /* Changed to standard font */
+            font-size: 3em; /* Increased font size */
+            font-weight: bold; /* Make the text bold */
+            background: linear-gradient(45deg, #ff6f6f, #ff0000); /* Red gradient */
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.7), 0 0 20px rgba(255, 0, 0, 0.5);
+            letter-spacing: 5px; /* Increased letter spacing */
+        }
+        .hidden {
+            display: none;
+        }
+        .typing-container {
+            position: absolute;
+            top: 20px; /* Start from the top */
+            left: 50%; /* Center align horizontally */
+            transform: translateX(-50%); /* Center the container */
+            font-size: 2.5em; /* Increase font size */
+            font-family: 'Great Vibes', cursive;
+            text-align: center; /* Center the text within the container */
+            white-space: pre-wrap; /* Preserve whitespace and line breaks */
+            color: #0000ff; /* Blue color */
+            text-shadow: 0 0 15px rgba(0, 0, 255, 0.7), 0 0 25px rgba(0, 0, 255, 0.5); /* Blue glow effect */
+            line-height: 1.8; /* Increased space between lines */
+            margin: 0; /* Remove default margin */
+            max-width: 80%; /* Limit width for better readability */
+            font-weight: bold; /* Make text bold */
+            letter-spacing: 1.5px; /* Increased letter spacing for paragraph */
+        }
+        .typing-container span {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(1em);
+            animation: typing 0.15s forwards; /* Slower typing speed */
+        }
+        @keyframes typing {
+            from {
+                opacity: 0;
+                transform: translateY(1em);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="clickMessage" class="message" onclick="showLoveMessage()">Click to Read My Heart</div>
+        <div id="loveMessage" class="message calligraphic hidden">I LOVE YOU HABII</div>
+        <div id="paragraph" class="typing-container hidden">
+            <!-- The text content will be dynamically inserted here -->
+        </div>
+    </div>
+    <script>
+        function showLoveMessage() {
+            const clickMessage = document.getElementById('clickMessage');
+            const loveMessage = document.getElementById('loveMessage');
+            const paragraph = document.getElementById('paragraph');
+
+            // Hide "Click to Read My Heart" message and show the love message
+            clickMessage.classList.add('hidden');
+            loveMessage.classList.remove('hidden');
+
+            // Show the paragraph with typing animation after a delay
+            setTimeout(() => {
+                loveMessage.classList.add('hidden');
+                paragraph.classList.remove('hidden');
+                
+                // Updated text content
+                const text = `Habii,, I love you so much!\nEnikk engane ahhnu love express cheyaan enikk ariyilla\nnyan nine paramavathi happy aakan nookind da\nenikk nine vayankara ishtaan\nni enne kore karayom manasilaaki thannind kore kore\nenikk ente values ni ahhnu mansilaaki thannath\n\nyou are the first girl that get into my heart enikk kore\nparayann ind ninood\nnammade ooro adiyum kazhiyumpo enikk love kuudare ullu\nathream nyan nine sneehikkind da enikk nine vayankara ishtaan da\nNi enikk therunna priority nallonam ind enne sherikkum oru family member poole ni kaanind enikk atth vayankara ishtaan parayan ahhnell koree ind\nninte ahh kannu nooki irikkann thane enth resaanu\ni love it to loke you eyes and sleep\ni love you a loooot\nI miss you daa I wish to say sorry to you some of them are my mistake sooyy\n\nby your loving kaaku`;
+
+                // Insert each letter as a span into the paragraph container
+                paragraph.innerHTML = text.split('').map((char, index) =>
+                    `<span style="animation-delay:${index * 0.15}s">${char}</span>`
+                ).join('');
+            }, 2000); // Adjust the delay as needed
+        }
+    </script>
+</body>
+</html>
