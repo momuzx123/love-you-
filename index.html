@@ -9,19 +9,18 @@
     <style>
         body {
             margin: 0;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            padding: 0;
             font-family: Arial, sans-serif;
             color: white;
             text-align: center;
-            position: relative;
-            overflow: hidden;
             background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
             background-size: 400% 400%;
             animation: gradientMove 15s ease infinite;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+        .container {
+            min-height: 100vh; /* Ensures the container takes at least the full height of the viewport */
+            padding: 2rem; /* Add some padding for better spacing */
         }
         .message {
             font-size: 2rem;
@@ -46,21 +45,17 @@
             display: none;
         }
         .typing-container {
-            position: absolute;
-            top: 10%;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 1.8rem; /* Increased font size */
+            font-size: 1.5rem; /* Adjusted font size */
             font-family: 'Great Vibes', cursive;
             text-align: center;
             white-space: pre-wrap;
             color: #ff69b4; /* Pink color */
             text-shadow: 0 0 15px rgba(255, 105, 180, 0.7), 0 0 25px rgba(255, 105, 180, 0.5); /* Pink glow */
             line-height: 1.5;
-            margin: 0;
+            margin: 0 auto;
             max-width: 90%;
             font-weight: bold;
-            letter-spacing: 0.3rem; /* Increased letter spacing */
+            letter-spacing: 0.1rem; /* Adjusted letter spacing */
         }
         .typing-container span {
             display: inline-block;
@@ -116,9 +111,8 @@
                 letter-spacing: 0.2rem;
             }
             .typing-container {
-                font-size: 1.6rem; /* Adjusted for medium screens */
-                top: 5%;
-                letter-spacing: 0.15rem; /* Adjusted for medium screens */
+                font-size: 1.3rem; /* Adjusted for medium screens */
+                letter-spacing: 0.05rem; /* Adjusted for medium screens */
             }
         }
         @media (max-width: 480px) {
@@ -131,9 +125,8 @@
                 letter-spacing: 0.1rem;
             }
             .typing-container {
-                font-size: 1.4rem; /* Adjusted for smaller screens */
-                top: 2%;
-                letter-spacing: 0.1rem; /* Adjusted for smaller screens */
+                font-size: 1.1rem; /* Adjusted for smaller screens */
+                letter-spacing: 0.05rem; /* Adjusted for smaller screens */
             }
         }
         /* Butterfly styles */
@@ -170,7 +163,7 @@
     </style>
 </head>
 <body>
-    <div id="container">
+    <div class="container">
         <div id="clickMessage" class="message" onclick="showLoveMessage()">Click to Read My Heart</div>
         <div id="loveMessage" class="message calligraphic hidden">I LOVE YOU HABII</div>
         <div id="paragraph" class="typing-container hidden">
