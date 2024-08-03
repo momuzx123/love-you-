@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Love Message</title>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet"> <!-- Added Dancing Script -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
@@ -14,58 +14,67 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            background-image: url('https://i.imgur.com/h3D1KQM.jpeg'); /* Background image URL */
-            background-size: cover;
-            background-position: center;
             font-family: Arial, sans-serif;
             color: white;
             text-align: center;
-            position: relative; /* Ensure positioning context for the butterfly */
+            position: relative;
+            overflow: hidden;
+            background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+            background-size: 400% 400%;
+            animation: gradientMove 15s ease infinite;
         }
         .message {
-            font-size: 2em;
+            font-size: 2rem;
             font-weight: bold;
             cursor: pointer;
             animation: pulse 1s infinite;
-            margin-bottom: 20px;
-            font-family: 'Dancing Script', cursive; /* Updated font */
+            margin-bottom: 1.25rem;
+            font-family: 'Dancing Script', cursive;
         }
         .calligraphic {
-            font-family: 'Arial', sans-serif; /* Changed to standard font */
-            font-size: 3em; /* Increased font size */
-            font-weight: bold; /* Make the text bold */
-            background: linear-gradient(45deg, #ff6f6f, #ff0000); /* Red gradient */
+            font-family: 'Arial', sans-serif;
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ff6f6f, #ff0000);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             text-shadow: 0 0 10px rgba(255, 0, 0, 0.7), 0 0 20px rgba(255, 0, 0, 0.5);
-            letter-spacing: 5px; /* Increased letter spacing */
+            letter-spacing: 0.3rem;
         }
         .hidden {
             display: none;
         }
         .typing-container {
             position: absolute;
-            top: 20px; /* Start from the top */
-            left: 50%; /* Center align horizontally */
-            transform: translateX(-50%); /* Center the container */
-            font-size: 2.5em; /* Increase font size */
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.8rem; /* Increased font size */
             font-family: 'Great Vibes', cursive;
-            text-align: center; /* Center the text within the container */
-            white-space: pre-wrap; /* Preserve whitespace and line breaks */
-            color: #0000ff; /* Blue color */
-            text-shadow: 0 0 15px rgba(0, 0, 255, 0.7), 0 0 25px rgba(0, 0, 255, 0.5); /* Blue glow effect */
-            line-height: 1.8; /* Increased space between lines */
-            margin: 0; /* Remove default margin */
-            max-width: 80%; /* Limit width for better readability */
-            font-weight: bold; /* Make text bold */
-            letter-spacing: 1.5px; /* Increased letter spacing for paragraph */
+            text-align: center;
+            white-space: pre-wrap;
+            color: #ff69b4; /* Pink color */
+            text-shadow: 0 0 15px rgba(255, 105, 180, 0.7), 0 0 25px rgba(255, 105, 180, 0.5); /* Pink glow */
+            line-height: 1.5;
+            margin: 0;
+            max-width: 90%;
+            font-weight: bold;
+            letter-spacing: 0.3rem; /* Increased letter spacing */
         }
         .typing-container span {
             display: inline-block;
             opacity: 0;
             transform: translateY(1em);
-            animation: typing 0.15s forwards; /* Slower typing speed */
+            animation: typing 0.15s forwards;
+        }
+        .cursor {
+            display: inline-block;
+            background: #000;
+            width: 0.1em;
+            height: 1em;
+            animation: blink 0.7s infinite;
+            margin-left: 0.1em;
         }
         @keyframes typing {
             from {
@@ -82,6 +91,82 @@
             50% { transform: scale(1.1); }
             100% { transform: scale(1); }
         }
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+        @keyframes gradientMove {
+            0% {
+                background-position: 0% 0%;
+            }
+            50% {
+                background-position: 100% 100%;
+            }
+            100% {
+                background-position: 0% 0%;
+            }
+        }
+        @media (max-width: 768px) {
+            .message {
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+            }
+            .calligraphic {
+                font-size: 2rem;
+                letter-spacing: 0.2rem;
+            }
+            .typing-container {
+                font-size: 1.6rem; /* Adjusted for medium screens */
+                top: 5%;
+                letter-spacing: 0.15rem; /* Adjusted for medium screens */
+            }
+        }
+        @media (max-width: 480px) {
+            .message {
+                font-size: 1.25rem;
+                margin-bottom: 0.75rem;
+            }
+            .calligraphic {
+                font-size: 1.75rem;
+                letter-spacing: 0.1rem;
+            }
+            .typing-container {
+                font-size: 1.4rem; /* Adjusted for smaller screens */
+                top: 2%;
+                letter-spacing: 0.1rem; /* Adjusted for smaller screens */
+            }
+        }
+        /* Butterfly styles */
+        .butterfly {
+            position: absolute;
+            width: 100px; /* Adjusted size */
+            height: 100px; /* Adjusted size */
+            background-image: url('https://i.imgur.com/Jpga3tu.gif');
+            background-size: cover;
+            background-repeat: no-repeat;
+            animation: butterflyMove 10s infinite linear;
+        }
+        .butterfly.top-left {
+            top: 10px;
+            left: 10px;
+        }
+        .butterfly.top-right {
+            top: 10px;
+            right: 10px;
+        }
+        .butterfly.bottom-left {
+            bottom: 10px;
+            left: 10px;
+        }
+        .butterfly.bottom-right {
+            bottom: 10px;
+            right: 10px;
+        }
+        @keyframes butterflyMove {
+            0% { transform: translateY(0) translateX(0); }
+            50% { transform: translateY(-20px) translateX(10px); }
+            100% { transform: translateY(0) translateX(0); }
+        }
     </style>
 </head>
 <body>
@@ -92,25 +177,28 @@
             <!-- The text content will be dynamically inserted here -->
         </div>
     </div>
+
+    <!-- Butterfly elements -->
+    <div class="butterfly top-left"></div>
+    <div class="butterfly top-right"></div>
+    <div class="butterfly bottom-left"></div>
+    <div class="butterfly bottom-right"></div>
+
     <script>
         function showLoveMessage() {
             const clickMessage = document.getElementById('clickMessage');
             const loveMessage = document.getElementById('loveMessage');
             const paragraph = document.getElementById('paragraph');
 
-            // Hide "Click to Read My Heart" message and show the love message
             clickMessage.classList.add('hidden');
             loveMessage.classList.remove('hidden');
 
-            // Show the paragraph with typing animation after a delay
             setTimeout(() => {
                 loveMessage.classList.add('hidden');
                 paragraph.classList.remove('hidden');
-                
-                // Updated text content
+
                 const text = `Habii,, I love you so much!\nEnikk engane ahhnu love express cheyaan enikk ariyilla\nnyan nine paramavathi happy aakan nookind da\nenikk nine vayankara ishtaan\nni enne kore karayom manasilaaki thannind kore kore\nenikk ente values ni ahhnu mansilaaki thannath\n\nyou are the first girl that get into my heart enikk kore\nparayann ind ninood\nnammade ooro adiyum kazhiyumpo enikk love kuudare ullu\nathream nyan nine sneehikkind da enikk nine vayankara ishtaan da\nNi enikk therunna priority nallonam ind enne sherikkum oru family member poole ni kaanind enikk atth vayankara ishtaan parayan ahhnell koree ind\nninte ahh kannu nooki irikkann thane enth resaanu\ni love it to loke you eyes and sleep\ni love you a loooot\nI miss you daa I wish to say sorry to you some of them are my mistake sooyy\n\nby your loving kaaku`;
 
-                // Insert each letter as a span into the paragraph container
                 paragraph.innerHTML = text.split('').map((char, index) =>
                     `<span style="animation-delay:${index * 0.15}s">${char}</span>`
                 ).join('');
